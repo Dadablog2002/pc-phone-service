@@ -1,43 +1,105 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
+  <!-- Основні мета-теги -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Назва та іконка сайту -->
   <title>PC&Phone СЕРВІС</title>
   <link rel="icon" href="logo.png" />
+  
+  <!-- Підключення TailwindCSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
   <style>
-    .modal {
-      transition: all 0.3s ease-in-out;
-      transform: translateY(100%);
-      opacity: 0;
-    }
-    .modal.active {
-      transform: translateY(0%);
-      opacity: 1;
-    }
-    @keyframes fadeUp {
-      0% { transform: translateY(20px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
-    .fade-up { animation: fadeUp 0.6s ease forwards; }
-  </style>
+  /* Зменшена фіксована навігаційна панель */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%; /* Зменшена ширина панелі */
+    z-index: 50;
+    background-color: rgba(0, 0, 255, 0.9);
+    padding: 6px 12px; /* Зменшений внутрішній відступ для компактності */
+    border-radius: 8px; /* Злегка закруглені кути для гарного вигляду */
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1); /* Легша тінь */
+  }
+
+  /* Відступ для головного контенту */
+  #hero {
+    padding-top: 80px; /* Відступ для уникнення перекриття після завантаження */
+  }
+
+  /* Стилі для секцій при переході */
+  section {
+    scroll-margin-top: 80px; /* Відступ для уникнення перекриття після переходу */
+  }
+
+  /* Стилі для навігаційних кнопок */
+  .nav-link {
+    font-weight: bold;
+    padding: 8px 12px; /* Менші кнопки */
+    border-radius: 6px; /* Зменшений радіус закруглення */
+    display: block;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 4px auto; /* Трохи менші відступи між кнопками */
+    max-width: 150px; /* Зменшена ширина кнопок */
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  .nav-link:hover {
+    background: rgba(255, 255, 255, 0.25); /* Легший фон при наведенні */
+    transform: scale(1.03); /* Легший ефект збільшення */
+  }
+
+  /* Стилі для карток послуг */
+  .service-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  .service-card h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  /* Стилі для блоку контактів */
+  .contact-item:hover {
+    background-color: rgba(240, 240, 240, 1);
+    transform: scale(1.05);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+
+  /* Плавна прокрутка при переході */
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+
 </head>
 <body class="bg-gray-100 text-gray-800">
 
 <!-- Оновлена шапка з мобільною підтримкою -->
-<nav class="bg-blue-600 text-white fixed top-4 left-1/2 transform -translate-x-1/2 w-11/12 rounded-xl shadow-lg z-50">
+<nav class="bg-blue-600 text-white fixed top-0 left-1/2 transform -translate-x-1/2 w-11/12 rounded-xl shadow-lg z-50">
   <div class="container mx-auto px-6 flex justify-between items-center py-4">
     <h1 class="text-xl font-bold">🔧 PC&Phone СЕРВІС</h1>
     <button id="menu-btn" class="text-3xl sm:hidden focus:outline-none px-3 py-2 bg-white text-blue-600 rounded-md">☰</button>
     <ul id="nav-links" class="hidden sm:flex sm:space-x-6 flex-col sm:flex-row absolute sm:relative top-16 sm:top-auto left-1/2 sm:left-auto transform -translate-x-1/2 sm:translate-x-0 w-11/12 sm:w-auto bg-blue-600 sm:bg-transparent rounded-lg shadow-lg sm:shadow-none text-center sm:text-left py-4 sm:py-0">
       <li><a href="#services" class="nav-link">Послуги</a></li>
       <li><a href="#contact-form" class="nav-link">Заявка</a></li>
-      <li><a href="#footer" class="nav-link">Контакти</a></li>
+      <li><a href="#contacts" class="nav-link">Контакти</a></li>
     </ul>
   </div>
 </nav>
-
 
 <!-- Відступ для контенту -->
 <div class="pt-24"></div>
@@ -58,24 +120,6 @@
     });
   });
 </script>
-
-<style>
-  .nav-link {
-    font-weight: bold;
-    padding: 12px 16px;
-    border-radius: 8px;
-    display: block;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.15);
-    margin: 5px auto;
-    max-width: 200px;
-    transition: background 0.3s ease, transform 0.2s ease;
-  }
-  .nav-link:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.05);
-  }
-</style>
 
 <!-- Заголовок -->
 <header class="bg-white shadow py-6">
@@ -117,25 +161,6 @@
     </div>
   </div>
 </section>
-
-<style>
-  .service-card {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-  .service-card h3 {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-</style>
 
 <!-- Модальне вікно -->
 <div id="modal" class="fixed inset-0 z-50 flex items-end justify-center bg-black bg-opacity-50 hidden">
@@ -224,14 +249,43 @@
   });
 </script>
 
+<!-- Контакти -->
+<section id="contacts" class="bg-white py-12">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-semibold mb-8 text-center">Контакти</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Блок з телефоном -->
+      <div class="contact-item bg-gray-100 rounded-lg shadow-lg p-6 flex flex-col items-center">
+        <h3 class="text-xl font-bold mb-2">📞 Телефон</h3>
+        <p><a href="tel:+380633293823" class="text-blue-600 underline">+38 (063) 329 38 23</a></p>
+      </div>
+      <!-- Блок з Telegram -->
+      <div class="contact-item bg-gray-100 rounded-lg shadow-lg p-6 flex flex-col items-center">
+        <h3 class="text-xl font-bold mb-2">📲 Telegram</h3>
+        <p><a href="https://t.me/Dadablog2002" class="text-blue-600 underline">@Dadablog2002</a></p>
+      </div>
+      <!-- Блок з Instagram -->
+      <div class="contact-item bg-gray-100 rounded-lg shadow-lg p-6 flex flex-col items-center">
+        <h3 class="text-xl font-bold mb-2">📸 Instagram</h3>
+        <p><a href="https://instagram.com/pcphone_servise" class="text-blue-600 underline">@pcphone_servise</a></p>
+      </div>
+      <!-- Блок з адресою -->
+      <div class="contact-item bg-gray-100 rounded-lg shadow-lg p-6 flex flex-col items-center">
+        <h3 class="text-xl font-bold mb-2">📍 Адреса</h3>
+        <p>Київська область, місто Обухів</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Footer -->
 <footer id="footer" class="bg-gray-800 text-white py-6">
   <div class="container mx-auto px-4 text-center">
-    <p>📞 <a href="tel:+380633293823" class="underline">+38 (063) 329 38 23</a></p>
-    <p>📲 <a href="https://t.me/Dadablog2002" class="underline">@Dadablog2002</a> | 📸 <a href="https://instagram.com/pcphone_servise" class="underline">@pcphone_servise</a></p>
-    <p class="mt-2 text-sm">&copy; 2025 PC&Phone СЕРВІС. Всі права захищені.</p>
+    <p class="text-lg font-semibold">PC&Phone СЕРВІС</p>
+    <p class="text-sm mb-4">Ремонт та обслуговування вашої техніки – швидко, якісно, доступно!</p>
+    <p class="mt-2 text-xs text-gray-400">&copy; 2025 PC&Phone СЕРВІС. Всі права захищені.</p>
   </div>
 </footer>
-
+	
 </body>
 </html>
