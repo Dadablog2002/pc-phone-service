@@ -29,14 +29,15 @@
 <nav class="bg-blue-600 text-white fixed top-4 left-1/2 transform -translate-x-1/2 w-11/12 rounded-xl shadow-lg z-50">
   <div class="container mx-auto px-6 flex justify-between items-center py-4">
     <h1 class="text-xl font-bold">🔧 PC&Phone СЕРВІС</h1>
-    <button id="menu-btn" class="text-3xl sm:hidden focus:outline-none">&#9776;</button>
-    <ul id="nav-links" class="hidden sm:flex space-x-6 sm:flex-row flex-col absolute sm:relative top-16 sm:top-auto left-1/2 sm:left-auto transform -translate-x-1/2 sm:translate-x-0 w-11/12 sm:w-auto bg-blue-600 sm:bg-transparent rounded-lg shadow-lg sm:shadow-none text-center sm:text-left py-4 sm:py-0">
+    <button id="menu-btn" class="text-3xl sm:hidden focus:outline-none px-3 py-2 bg-white text-blue-600 rounded-md">☰</button>
+    <ul id="nav-links" class="hidden sm:flex sm:space-x-6 flex-col sm:flex-row absolute sm:relative top-16 sm:top-auto left-1/2 sm:left-auto transform -translate-x-1/2 sm:translate-x-0 w-11/12 sm:w-auto bg-blue-600 sm:bg-transparent rounded-lg shadow-lg sm:shadow-none text-center sm:text-left py-4 sm:py-0">
       <li><a href="#services" class="nav-link">Послуги</a></li>
       <li><a href="#contact-form" class="nav-link">Заявка</a></li>
       <li><a href="#footer" class="nav-link">Контакти</a></li>
     </ul>
   </div>
 </nav>
+
 
 <!-- Відступ для контенту -->
 <div class="pt-24"></div>
@@ -65,10 +66,14 @@
     border-radius: 8px;
     display: block;
     text-align: center;
-    transition: background 0.3s ease;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 5px auto;
+    max-width: 200px;
+    transition: background 0.3s ease, transform 0.2s ease;
   }
   .nav-link:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
   }
 </style>
 
