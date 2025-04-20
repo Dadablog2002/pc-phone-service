@@ -16,110 +16,231 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
-  <style>
-    /* Зменшена фіксована навігаційна панель */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 85%;
-      z-index: 50;
-      background-color: rgba(0, 0, 255, 0.9);
-      padding: 6px 12px;
-      border-radius: 8px;
-      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
-    }
+<style>
+  /* Фіксована навігація з покращеним стилем */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    z-index: 50;
+    background-color: rgba(0, 0, 255, 0.9); /* Насичений синій фон */
+    padding: 10px 15px;
+    border-radius: 12px; /* Закруглені кути */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Тінь для глибини */
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
 
-    /* Відступ для головного контенту */
-    #hero {
-      padding-top: 80px;
-    }
+  nav:hover {
+    background-color: rgba(0, 0, 180, 0.95); /* Темніше при наведенні */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+  }
 
-    /* Стилі для секцій при переході */
-    section {
-      scroll-margin-top: 80px;
-    }
+  /* Відступ для головного контенту, щоб не перекривало навігацію */
+  #hero {
+    padding-top: 100px;
+  }
 
-    /* Стилі для навігаційних кнопок */
-    .nav-link {
-      font-weight: bold;
-      padding: 8px 12px;
-      border-radius: 6px;
-      display: block;
-      text-align: center;
-      background: rgba(255, 255, 255, 0.15);
-      margin: 4px auto;
-      max-width: 150px;
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
-    .nav-link:hover {
-      background: rgba(255, 255, 255, 0.25);
-      transform: scale(1.03);
-    }
+  /* Плавний перехід до секцій при навігації */
+  section {
+    scroll-margin-top: 100px;
+  }
 
-    /* Стилі для карток послуг */
-    .service-card {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .service-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-    .service-card h3 {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
+  /* Стиль навігаційних кнопок */
+  .nav-link {
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 8px;
+    display: block;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.2); /* Напівпрозорий білий */
+    margin: 6px auto;
+    max-width: 160px;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
 
-    /* Стилі для блоку контактів */
-    .contact-item:hover {
-      background-color: rgba(240, 240, 240, 1);
-      transform: scale(1.05);
-      transition: transform 0.3s ease, background-color 0.3s ease;
-    }
+  .nav-link:hover {
+    background: rgba(255, 255, 255, 0.4); /* Світліше при наведенні */
+    transform: scale(1.06);
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+  }
 
-    /* Плавна прокрутка при переході */
-    html {
-      scroll-behavior: smooth;
-    }
+  /* Стиль карток послуг */
+  .service-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px; /* Закруглені кути */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Легка тінь */
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
 
-/* Стилі для слайдера */
-#slider {
-  margin-top: 20px;
-  padding: 20px;
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Ефект при наведенні на контакти */
+  .contact-item {
+    transition: transform 0.4s ease, background-color 0.4s ease;
+  }
+
+  .contact-item:hover {
+    background-color: rgba(240, 240, 240, 1); /* Світліший фон при наведенні */
+    transform: scale(1.07);
+  }
+
+  /* Плавна прокрутка сторінки */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Покращений слайдер із плавними переходами */
+  #slider {
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .swiper {
+    width: 80%;
+    height: 400px;
+    border-radius: 15px;
+    overflow: hidden; /* Захист від виходу зображень */
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Анімація зміни слайдів */
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease-in-out;
+  }
+
+  .swiper-slide-active {
+    opacity: 1;
+  }
+
+  /* Стилізація зображень у слайдері */
+  .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Коректне масштабування */
+    border-radius: 12px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+
+  /* Ефект наведення */
+  .swiper-slide img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Адаптивність слайдера */
+  @media (max-width: 768px) {
+    .swiper {
+      width: 100%;
+      height: 300px;
+    }
+  }
+
+/* Мінімалістична кнопка "Натисни на мене" */
+.click-hint {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  color: #007bff;
+  text-align: center;
+  margin-top: 10px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* Покращений ефект */
+.service-card:hover .click-hint {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+/* Блок команди */
+#team {
+  background-color: #f8f8f8;
+  padding: 50px 20px;
   text-align: center;
 }
 
-.swiper {
-  width: 80%;
-  height: 400px; /* Фіксуємо висоту */
-}
-
-.swiper-slide {
+/* Карточки спеціалістів */
+.team-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.swiper-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* Робимо зображення повністю видимими */
+/* Фото спеціалістів */
+.team-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Адаптивність */
-@media (max-width: 768px) {
-  .swiper {
-    width: 100%;
-    height: 300px;
-  }
+/* Заголовок та роль */
+.team-card h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 6px;
 }
-  </style>
+
+.role {
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+/* Опис */
+.team-card p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Ефект при наведенні */
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+  background: rgba(240, 240, 240, 0.3);
+}
+
+/* Декоративна лінія під заголовком */
+.team-card h3::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: #007bff;
+  margin: 8px auto;
+}
+
+/* Додавання тонкого ефекту розширення */
+.team-card:hover h3::after {
+  width: 80px;
+  transition: width 0.3s ease-in-out;
+}
+</style>
+
 </head>
 <body class="bg-gray-100 text-gray-800">
 
@@ -130,6 +251,7 @@
     <button id="menu-btn" class="text-3xl sm:hidden focus:outline-none px-3 py-2 bg-white text-blue-600 rounded-md">☰</button>
     <ul id="nav-links" class="hidden sm:flex sm:space-x-6 flex-col sm:flex-row absolute sm:relative top-16 sm:top-auto left-1/2 sm:left-auto transform -translate-x-1/2 sm:translate-x-0 w-11/12 sm:w-auto bg-blue-600 sm:bg-transparent rounded-lg shadow-lg sm:shadow-none text-center sm:text-left py-4 sm:py-0">
       <li><a href="#services" class="nav-link">Послуги</a></li>
+      <li><a href="#team" class="nav-link">Наша команда</a></li>
       <li><a href="#contact-form" class="nav-link">Заявка</a></li>
       <li><a href="#contacts" class="nav-link">Контакти</a></li>
     </ul>
@@ -170,26 +292,32 @@
       <div onclick="openModal('modal1')" class="service-card">
         <h3>📱 Ремонт телефонів</h3>
         <p>Заміна екранів, батарей, камер, мікрофонів, корпусів, а також ремонт після потрапляння води.</p>
+        <span class="click-hint">Натисни на мене</span>
       </div>
       <div onclick="openModal('modal2')" class="service-card">
         <h3>💻 Ремонт ПК і ноутбуків</h3>
         <p>Очищення, апгрейд, діагностика, ремонт компонентів та відновлення після пошкоджень.</p>
+        <span class="click-hint">Натисни на мене</span>
       </div>
       <div onclick="openModal('modal3')" class="service-card">
         <h3>⚙️ Установка Windows і програм</h3>
         <p>Установка ОС, драйверів, програмного забезпечення, оптимізація швидкодії.</p>
+        <span class="click-hint">Натисни на мене</span>
       </div>
       <div onclick="openModal('modal4')" class="service-card">
         <h3>🛡️ Видалення вірусів</h3>
         <p>Знешкодження троянів, банерів, шкідливих програм, встановлення антивірусного захисту.</p>
+        <span class="click-hint">Натисни на мене</span>
       </div>
       <div onclick="openModal('modal5')" class="service-card">
         <h3>🔌 Заміна гнізда зарядки</h3>
         <p>Професійна заміна гнізд живлення на телефонах, планшетах і ноутбуках.</p>
+        <span class="click-hint">Натисни на мене</span>
       </div>
       <div onclick="openModal('modal6')" class="service-card">
         <h3>🧊 Чистка від пилу</h3>
         <p>Комплексна чистка охолоджувальної системи та заміна термопасти.</p>
+        <span class="click-hint">Натисни на мене</span>
       </div>
     </div>
   </div>
@@ -202,7 +330,33 @@
     <h3 id="modal-title" class="text-xl font-bold mb-2">Назва</h3>
     <p id="modal-content">Текст опису...</p>
   </div>
-</div>
+</div
+
+<!-- Блок "Наша команда" -->
+<section id="team" class="py-12 bg-gray-100">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-semibold mb-10 text-center">Наша команда</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-6xl mx-auto">
+      
+      <!-- Сергій - фахівець з телефонів -->
+      <div class="team-card">
+        <img src="serhiy.jpg" alt="Сергій" class="team-img">
+        <h3>📱 Сергій</h3>
+        <p class="role">Фахівець із телефонів та планшетів</p>
+        <p>Майстер з ремонту смартфонів, планшетів та мобільної техніки. Швидко діагностує проблеми, замінює розбиті екрани, акумулятори та виконує ремонт після потрапляння води.</p>
+      </div>
+
+      <!-- Дмитро - фахівець з ПК -->
+      <div class="team-card">
+        <img src="dmytro.jpg" alt="Дмитро" class="team-img">
+        <h3>💻 Дмитро</h3>
+        <p class="role">Фахівець із ПК та ноутбуків</p>
+        <p>Експерт із діагностики та ремонту комп’ютерів та ноутбуків. Спеціалізується на встановленні ОС, очищенні від пилу, заміні SSD/RAM та відновленні після технічних несправностей.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <!-- Форма заявки -->
 <section id="contact-form" class="bg-white py-10">
@@ -260,26 +414,31 @@
 </footer>
 
 <script>
-  // Відкривання/закривання мобільного меню
-  const menuBtn = document.getElementById("menu-btn");
-  const menu = document.getElementById("nav-links");
+// Відкривання/закривання мобільного меню
+const menuBtn = document.getElementById("menu-btn");
+const menu = document.getElementById("nav-links");
 
-  menuBtn.addEventListener("click", () => {
-    menu.classList.toggle("hidden");
+menuBtn.addEventListener("click", () => {
+  menu.classList.toggle("hidden");
+});
+
+// Закриття меню при кліку на посилання
+document.querySelectorAll(".nav-link").forEach(link => {
+  link.addEventListener("click", () => {
+    menu.classList.add("hidden");
   });
+});
 
-  document.querySelectorAll(".nav-link").forEach(link => {
-    link.addEventListener("click", () => {
-      menu.classList.add("hidden");
-    });
-  });
-
-// Ініціалізація Swiper.js
+// Ініціалізація Swiper.js з додатковими ефектами
 const swiper = new Swiper(".mySwiper", {
-  loop: true, // Безкінечне прокручування
+  loop: true,
   autoplay: {
-    delay: 3000,
+    delay: 2500,
     disableOnInteraction: false
+  },
+  effect: "fade", // Плавне зникання
+  fadeEffect: {
+    crossFade: true
   },
   pagination: {
     el: ".swiper-pagination",
@@ -291,60 +450,79 @@ const swiper = new Swiper(".mySwiper", {
   }
 });
 
-  // Дані для модального вікна
-  const modalData = {
-    modal1: { title: "📱 Ремонт телефонів", content: "Заміна екранів, акумуляторів, камер, мікрофонів, корпусів. Безкоштовна діагностика!" },
-    modal2: { title: "💻 Ремонт ПК і ноутбуків", content: "Очищення від пилу, апгрейд SSD/RAM, ремонт материнських плат, діагностика." },
-    modal3: { title: "⚙️ Установка Windows і програм", content: "Інсталяція Windows 10/11, драйверів, офісного та антивірусного ПО." },
-    modal4: { title: "🛡️ Видалення вірусів", content: "Антивірусна перевірка, очищення системи, налаштування захисту." },
-    modal5: { title: "🔌 Заміна гнізда зарядки", content: "Ремонт гнізда живлення на телефонах, планшетах, ноутбуках." },
-    modal6: { title: "🧊 Чистка від пилу", content: "Глибока чистка, заміна термопасти, оптимізація системи охолодження." }
-  };
-
-  function openModal(id) {
-    const modal = document.getElementById("modal");
-    document.getElementById("modal-title").textContent = modalData[id].title;
-    document.getElementById("modal-content").textContent = modalData[id].content;
-    modal.classList.remove("hidden");
-    setTimeout(() => modal.querySelector(".modal").classList.add("active"), 10);
+// Дані для модального вікна
+const modalData = {
+  modal1: {
+    title: "📱 Ремонт телефонів",
+    content: "💡 Заміна екранів, акумуляторів, камер, мікрофонів та корпусів на телефонах усіх марок. ✅ Безкоштовна діагностика і швидке усунення будь-яких несправностей. Гарантія якості та оперативність! Зробимо ваш телефон як новий!"
+  },
+  modal2: {
+    title: "💻 Ремонт ПК і ноутбуків",
+    content: "🔧 Очищення від пилу, апгрейд SSD/RAM, ремонт материнських плат, діагностика і налаштування комп'ютерної техніки. 🛠️ Ремонтуємо ПК і ноутбуки різних брендів з індивідуальним підходом. Ваш пристрій отримає нове життя, працюючи швидше та ефективніше!"
+  },
+  modal3: {
+    title: "⚙️ Установка Windows і програм",
+    content: "💻 Інсталяція Windows 10/11, драйверів, офісного та антивірусного програмного забезпечення. 🚀 Професійна настройка для найкращої продуктивності та безпеки. Легко і швидко налаштуємо вашу систему під будь-які потреби!"
+  },
+  modal4: {
+    title: "🛡️ Видалення вірусів",
+    content: "🛠️ Повна антивірусна перевірка, очищення системи, налаштування захисту від шкідливих програм та вірусів. 🧼 Захистіть ваш пристрій від загроз і забезпечте максимальний рівень безпеки для вашої особистої інформації!"
+  },
+  modal5: {
+    title: "🔌 Заміна гнізда зарядки",
+    content: "⚡ Ремонт і заміна гнізд живлення на телефонах, планшетах, ноутбуках. 🛠️ Якщо ваш пристрій не заряджається або гніздо розслаблене, ми швидко усунемо проблему і повернемо вам нормальну роботу гаджета!"
+  },
+  modal6: {
+    title: "🧊 Чистка від пилу",
+    content: "🌬️ Глибока чистка від пилу, заміна термопасти та оптимізація системи охолодження для ноутбуків і ПК. 🔥 Ваша техніка працюватиме як нова, що значно знизить ризик перегріву та поліпшить продуктивність!"
   }
+};
 
-  function closeModal() {
-    const modal = document.getElementById("modal");
-    modal.querySelector(".modal").classList.remove("active");
-    setTimeout(() => modal.classList.add("hidden"), 300);
-  }
 
-  // Відправка заявки через Telegram Bot
-  document.getElementById("contact-form-element").addEventListener("submit", function(event) {
-    event.preventDefault();
+function openModal(id) {
+  const modal = document.getElementById("modal");
+  document.getElementById("modal-title").textContent = modalData[id].title;
+  document.getElementById("modal-content").textContent = modalData[id].content;
+  modal.classList.remove("hidden");
+  setTimeout(() => modal.querySelector(".modal").classList.add("active"), 10);
+}
 
-    const botToken = "7613390612:AAFo_tPea_3NtKa-XkMos2nZc3BSplMdepM"; // Замініть на свій токен
-    const chatId = "923186719"; // Замініть на ваш Chat ID
-    const name = document.getElementById("name").value;
-    const device = document.getElementById("device").value;
-    const problem = document.getElementById("problem").value;
-    const contact = document.getElementById("contact").value;
+function closeModal() {
+  const modal = document.getElementById("modal");
+  modal.querySelector(".modal").classList.remove("active");
+  setTimeout(() => modal.classList.add("hidden"), 300);
+}
 
-    const message = `📝 Нова заявка:\n\n👤 Ім’я: ${name}\n📱 Пристрій: ${device}\n🔧 Проблема: ${problem}\n📞 Контакт: ${contact}`;
+// Відправка заявки через Telegram Bot
+document.getElementById("contact-form-element").addEventListener("submit", function(event) {
+  event.preventDefault();
 
-    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: chatId, text: message })
-    }).then(response => response.json())
-      .then(data => {
-          document.getElementById("contact-form-element").classList.add("hidden");
-          document.getElementById("form-header").classList.add("hidden");
-          document.getElementById("success-message").classList.remove("hidden");
-          document.getElementById("instructions").classList.remove("hidden");
-          document.getElementById("error-message").classList.add("hidden");
-      }).catch(error => {
-          console.error("Помилка:", error);
-          document.getElementById("error-message").classList.remove("hidden");
-          document.getElementById("success-message").classList.add("hidden");
-      });
-  });
+  const botToken = "7613390612:AAFo_tPea_3NtKa-XkMos2nZc3BSplMdepM"; // Замініть на свій токен
+  const chatId = "923186719"; // Замініть на ваш Chat ID
+  const name = document.getElementById("name").value;
+  const device = document.getElementById("device").value;
+  const problem = document.getElementById("problem").value;
+  const contact = document.getElementById("contact").value;
+
+  const message = `📝 Нова заявка:\n\n👤 Ім’я: ${name}\n📱 Пристрій: ${device}\n🔧 Проблема: ${problem}\n📞 Контакт: ${contact}`;
+
+  fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chat_id: chatId, text: message })
+  }).then(response => response.json())
+    .then(data => {
+        document.getElementById("contact-form-element").classList.add("hidden");
+        document.getElementById("form-header").classList.add("hidden");
+        document.getElementById("success-message").classList.remove("hidden");
+        document.getElementById("instructions").classList.remove("hidden");
+        document.getElementById("error-message").classList.add("hidden");
+    }).catch(error => {
+        console.error("Помилка:", error);
+        document.getElementById("error-message").classList.remove("hidden");
+        document.getElementById("success-message").classList.add("hidden");
+    });
+});
 </script>
 	
 </body>
