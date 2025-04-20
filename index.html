@@ -17,23 +17,62 @@
       opacity: 1;
     }
     @keyframes fadeUp {
-      0% {
-        transform: translateY(20px);
-        opacity: 0;
-      }
-      100% {
-        transform: translateY(0);
-        opacity: 1;
-      }
+      0% { transform: translateY(20px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
     }
-    .fade-up {
-      animation: fadeUp 0.6s ease forwards;
-    }
+    .fade-up { animation: fadeUp 0.6s ease forwards; }
   </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
 
-<!-- Header -->
+<!-- Оновлена шапка з мобільною підтримкою -->
+<nav class="bg-blue-600 text-white fixed top-4 left-1/2 transform -translate-x-1/2 w-11/12 rounded-xl shadow-lg z-50">
+  <div class="container mx-auto px-6 flex justify-between items-center py-4">
+    <h1 class="text-xl font-bold">🔧 PC&Phone СЕРВІС</h1>
+    <button id="menu-btn" class="text-3xl sm:hidden focus:outline-none">&#9776;</button>
+    <ul id="nav-links" class="hidden sm:flex space-x-6 sm:flex-row flex-col absolute sm:relative top-16 sm:top-auto left-1/2 sm:left-auto transform -translate-x-1/2 sm:translate-x-0 w-11/12 sm:w-auto bg-blue-600 sm:bg-transparent rounded-lg shadow-lg sm:shadow-none text-center sm:text-left py-4 sm:py-0">
+      <li><a href="#services" class="nav-link">Послуги</a></li>
+      <li><a href="#contact-form" class="nav-link">Заявка</a></li>
+      <li><a href="#footer" class="nav-link">Контакти</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Відступ для контенту -->
+<div class="pt-24"></div>
+
+<script>
+  const menuBtn = document.getElementById("menu-btn");
+  const menu = document.getElementById("nav-links");
+
+  // Відкривання/закривання мобільного меню
+  menuBtn.addEventListener("click", () => {
+    menu.classList.toggle("hidden");
+  });
+
+  // Автоматичне закриття при натисканні на пункт меню
+  document.querySelectorAll(".nav-link").forEach(link => {
+    link.addEventListener("click", () => {
+      menu.classList.add("hidden");
+    });
+  });
+</script>
+
+<style>
+  .nav-link {
+    font-weight: bold;
+    padding: 12px 16px;
+    border-radius: 8px;
+    display: block;
+    text-align: center;
+    transition: background 0.3s ease;
+  }
+  .nav-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+</style>
+
+<!-- Заголовок -->
 <header class="bg-white shadow py-6">
   <div class="container mx-auto px-4 text-center">
     <h1 class="text-3xl font-bold">🔧 PC&Phone СЕРВІС 🔧</h1>
@@ -42,63 +81,56 @@
 </header>
 
 <!-- Послуги -->
-<section class="py-12">
+<section id="services" class="py-12">
   <div class="container mx-auto px-4">
     <h2 class="text-3xl font-semibold mb-10 text-center">Наші послуги</h2>
-    <div class="flex justify-center">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl w-full fade-up">
-        <div onclick="openModal('modal1')" class="bg-white p-6 rounded-lg shadow hover:shadow-xl cursor-pointer transition">
-          <h3 class="text-xl font-bold">📱 Ремонт телефонів</h3>
-          <p>Заміна екранів, батарей, камер, мікрофонів, корпусів, а також ремонт після потрапляння води.</p>
-        </div>
-        <div onclick="openModal('modal2')" class="bg-white p-6 rounded-lg shadow hover:shadow-xl cursor-pointer transition">
-          <h3 class="text-xl font-bold">💻 Ремонт ПК і ноутбуків</h3>
-          <p>Очищення, апгрейд, діагностика, ремонт компонентів та відновлення після пошкоджень.</p>
-        </div>
-        <div onclick="openModal('modal3')" class="bg-white p-6 rounded-lg shadow hover:shadow-xl cursor-pointer transition">
-          <h3 class="text-xl font-bold">⚙️ Установка Windows і програм</h3>
-          <p>Установка ОС, драйверів, програмного забезпечення, оптимізація швидкодії.</p>
-        </div>
-        <div onclick="openModal('modal4')" class="bg-white p-6 rounded-lg shadow hover:shadow-xl cursor-pointer transition">
-          <h3 class="text-xl font-bold">🛡️ Видалення вірусів</h3>
-          <p>Знешкодження троянів, банерів, шкідливих програм, встановлення антивірусного захисту.</p>
-        </div>
-        <div onclick="openModal('modal5')" class="bg-white p-6 rounded-lg shadow hover:shadow-xl cursor-pointer transition">
-          <h3 class="text-xl font-bold">🔌 Заміна гнізда зарядки</h3>
-          <p>Професійна заміна гнізд живлення на телефонах, планшетах і ноутбуках.</p>
-        </div>
-        <div onclick="openModal('modal6')" class="bg-white p-6 rounded-lg shadow hover:shadow-xl cursor-pointer transition">
-          <h3 class="text-xl font-bold">🧊 Чистка від пилу</h3>
-          <p>Комплексна чистка охолоджувальної системи та заміна термопасти.</p>
-        </div>
-        <div onclick="openModal('modal7')" class="bg-white p-6 rounded-lg shadow hover:shadow-xl cursor-pointer transition">
-          <h3 class="text-xl font-bold">📦 Відновлення даних</h3>
-          <p>Відновлення файлів після форматування, пошкодження або видалення.</p>
-        </div>
-        <div onclick="openModal('modal8')" class="bg-white p-6 rounded-lg shadow hover:shadow-xl cursor-pointer transition">
-          <h3 class="text-xl font-bold">🌐 Налаштування інтернету</h3>
-          <p>Конфігурація Wi-Fi, маршрутизаторів, усунення проблем з мережею.</p>
-        </div>
-        <div onclick="openModal('modal9')" class="bg-white p-6 rounded-lg shadow hover:shadow-xl cursor-pointer transition">
-          <h3 class="text-xl font-bold">🔋 Заміна акумуляторів</h3>
-          <p>Нові батареї для телефонів, планшетів, ноутбуків – швидко та надійно.</p>
-        </div>
-        <div onclick="openModal('modal10')" class="bg-white p-6 rounded-lg shadow hover:shadow-xl cursor-pointer transition">
-          <h3 class="text-xl font-bold">🎧 Ремонт аудіо-гнізд</h3>
-          <p>Виправлення проблем зі звуком та підключенням гарнітури.</p>
-        </div>
-        <div onclick="openModal('modal11')" class="bg-white p-6 rounded-lg shadow hover:shadow-xl cursor-pointer transition">
-          <h3 class="text-xl font-bold">🖥️ Ремонт моніторів</h3>
-          <p>Заміна матриці, підсвітки, блоків живлення тощо.</p>
-        </div>
-        <div onclick="openModal('modal12')" class="bg-white p-6 rounded-lg shadow hover:shadow-xl cursor-pointer transition">
-          <h3 class="text-xl font-bold">🔑 Відновлення доступу до акаунтів</h3>
-          <p>Допомога у відновленні паролів, розблокування акаунтів.</p>
-        </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto fade-up">
+      <div onclick="openModal('modal1')" class="service-card">
+        <h3>📱 Ремонт телефонів</h3>
+        <p>Заміна екранів, батарей, камер, мікрофонів, корпусів, а також ремонт після потрапляння води.</p>
+      </div>
+      <div onclick="openModal('modal2')" class="service-card">
+        <h3>💻 Ремонт ПК і ноутбуків</h3>
+        <p>Очищення, апгрейд, діагностика, ремонт компонентів та відновлення після пошкоджень.</p>
+      </div>
+      <div onclick="openModal('modal3')" class="service-card">
+        <h3>⚙️ Установка Windows і програм</h3>
+        <p>Установка ОС, драйверів, програмного забезпечення, оптимізація швидкодії.</p>
+      </div>
+      <div onclick="openModal('modal4')" class="service-card">
+        <h3>🛡️ Видалення вірусів</h3>
+        <p>Знешкодження троянів, банерів, шкідливих програм, встановлення антивірусного захисту.</p>
+      </div>
+      <div onclick="openModal('modal5')" class="service-card">
+        <h3>🔌 Заміна гнізда зарядки</h3>
+        <p>Професійна заміна гнізд живлення на телефонах, планшетах і ноутбуках.</p>
+      </div>
+      <div onclick="openModal('modal6')" class="service-card">
+        <h3>🧊 Чистка від пилу</h3>
+        <p>Комплексна чистка охолоджувальної системи та заміна термопасти.</p>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  .service-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  .service-card h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+</style>
 
 <!-- Модальне вікно -->
 <div id="modal" class="fixed inset-0 z-50 flex items-end justify-center bg-black bg-opacity-50 hidden">
@@ -111,18 +143,12 @@
 
 <script>
   const modalData = {
-    modal1: { title: "📱 Ремонт телефонів", content: "Заміна екранів, акумуляторів, камер, мікрофонів, корпусів, а також після води. Безкоштовна діагностика!" },
-    modal2: { title: "💻 Ремонт ПК і ноутбуків", content: "Очищення від пилу, ремонт материнських плат, апгрейд SSD/RAM, встановлення драйверів, та багато іншого." },
-    modal3: { title: "⚙️ Установка Windows і програм", content: "Установка Windows 10/11, офісу, драйверів, антивірусів, графічних програм. Без рекламного сміття!" },
-    modal4: { title: "🛡️ Видалення вірусів", content: "Видалення троянів, банерів, шкідливих програм, встановлення захисту та оптимізація системи." },
-    modal5: { title: "🔌 Заміна гнізда зарядки", content: "Професійна заміна гнізд живлення на телефонах, планшетах і ноутбуках. Точна пайка та гарантія." },
-    modal6: { title: "🧊 Чистка від пилу", content: "Комплексна чистка системи охолодження. Заміна термопасти та термопрокладок. Тиха та стабільна робота." },
-    modal7: { title: "📦 Відновлення даних", content: "Відновлення файлів після форматування, видалення або пошкодження накопичувача. Конфіденційно." },
-    modal8: { title: "🌐 Налаштування інтернету", content: "Налаштування роутерів, повторювачів Wi-Fi, покращення сигналу, усунення мережевих проблем." },
-    modal9: { title: "🔋 Заміна акумуляторів", content: "Телефони, планшети, ноутбуки – надійне оновлення батареї." },
-    modal10: { title: "🎧 Ремонт аудіо-гнізд", content: "Виправлення проблем зі звуком та підключенням гарнітури." },
-    modal11: { title: "🖥️ Ремонт моніторів", content: "Заміна матриці, підсвітки, блоків живлення тощо." },
-    modal12: { title: "🔑 Відновлення доступу до акаунтів", content: "Допомога у відновленні паролів, розблокування акаунтів." }
+    modal1: { title: "📱 Ремонт телефонів", content: "Заміна екранів, акумуляторів, камер, мікрофонів, корпусів. Безкоштовна діагностика!" },
+    modal2: { title: "💻 Ремонт ПК і ноутбуків", content: "Очищення від пилу, апгрейд SSD/RAM, ремонт материнських плат, діагностика." },
+    modal3: { title: "⚙️ Установка Windows і програм", content: "Інсталяція Windows 10/11, драйверів, офісного та антивірусного ПО." },
+    modal4: { title: "🛡️ Видалення вірусів", content: "Антивірусна перевірка, очищення системи, налаштування захисту." },
+    modal5: { title: "🔌 Заміна гнізда зарядки", content: "Ремонт гнізда живлення на телефонах, планшетах, ноутбуках." },
+    modal6: { title: "🧊 Чистка від пилу", content: "Глибока чистка, заміна термопасти, оптимізація системи охолодження." }
   };
 
   function openModal(id) {
@@ -141,10 +167,10 @@
 </script>
 
 <!-- Форма заявки -->
-<section class="bg-white py-10">
+<section id="contact-form" class="bg-white py-10">
   <div class="container mx-auto px-4">
     <h2 id="form-header" class="text-2xl font-semibold mb-4 text-center">Залишити заявку</h2>
-    <form id="contact-form" class="max-w-xl mx-auto grid gap-4">
+    <form id="contact-form-element" class="max-w-xl mx-auto grid gap-4">
       <input type="text" id="name" placeholder="Ім’я" class="border rounded p-2 w-full" required>
       <input type="text" id="device" placeholder="Тип пристрою" class="border rounded p-2 w-full" required>
       <textarea id="problem" placeholder="Коротко опиши проблему" class="border rounded p-2 w-full" rows="4" required></textarea>
@@ -158,11 +184,11 @@
 </section>
 
 <script>
-  document.getElementById("contact-form").addEventListener("submit", function(event) {
+  document.getElementById("contact-form-element").addEventListener("submit", function(event) {
     event.preventDefault();
 
-    const botToken = "7613390612:AAFo_tPea_3NtKa-XkMos2nZc3BSplMdepM"; // Твій реальний токен TelegramBot
-    const chatId = "923186719"; // Твій реальний чат ID
+    const botToken = "7613390612:AAFo_tPea_3NtKa-XkMos2nZc3BSplMdepM"; // Замініть на свій токен
+    const chatId = "923186719"; // Замініть на ваш Chat ID
     const name = document.getElementById("name").value;
     const device = document.getElementById("device").value;
     const problem = document.getElementById("problem").value;
@@ -177,7 +203,7 @@
     }).then(response => response.json())
       .then(data => {
           // Приховати форму та заголовок
-          document.getElementById("contact-form").classList.add("hidden");
+          document.getElementById("contact-form-element").classList.add("hidden");
           document.getElementById("form-header").classList.add("hidden");
           // Показати повідомлення про успіх
           document.getElementById("success-message").classList.remove("hidden");
@@ -194,7 +220,7 @@
 </script>
 
 <!-- Footer -->
-<footer class="bg-gray-800 text-white py-6">
+<footer id="footer" class="bg-gray-800 text-white py-6">
   <div class="container mx-auto px-4 text-center">
     <p>📞 <a href="tel:+380633293823" class="underline">+38 (063) 329 38 23</a></p>
     <p>📲 <a href="https://t.me/Dadablog2002" class="underline">@Dadablog2002</a> | 📸 <a href="https://instagram.com/pcphone_servise" class="underline">@pcphone_servise</a></p>
